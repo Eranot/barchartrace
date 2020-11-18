@@ -94,7 +94,6 @@ function createBarChartRace(data, top_n, tickDuration) {
         .tickSize(-(height - margin.top - margin.bottom))
         .tickFormat(d => d3.format(',')(d));
 
-
     svg.append('g')
         .attr('class', 'axis xAxis')
         .attr('transform', `translate(0, ${margin.top})`)
@@ -102,11 +101,11 @@ function createBarChartRace(data, top_n, tickDuration) {
         .selectAll('.tick line')
         .classed('origin', d => d === 0);
 
-    createBar1(svg, row_data, x, y, barPadding, inbetweenPadding, colors);
-    createBar2(svg, row_data, x, y, barPadding, inbetweenPadding, colors);
-    createLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors);
-    createValueLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors);
-    createValueLabelArea(svg, row_data, x, y, barPadding, inbetweenPadding, colors);
+    createBar1(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
+    createBar2(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
+    createLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
+    createValueLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
+    createValueLabelArea(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
     // createBandeira(svg, row_data, x, y, barPadding, inbetweenPadding, colors);
 
 
@@ -140,11 +139,11 @@ function createBarChartRace(data, top_n, tickDuration) {
             .ease(d3.easeLinear)
             .call(xAxis);
 
-        updateBar1(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration);
-        updateBar2(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration);
-        updateLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration);
-        updateValueLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration);
-        updateValueLabelArea(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration);
+        updateBar1(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
+        updateBar2(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
+        updateLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
+        updateValueLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
+        updateValueLabelArea(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
         // updateBandeira(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration);
 
         // update time label and progress bar

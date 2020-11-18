@@ -1,4 +1,4 @@
-let createBar1 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors) => {
+let createBar1 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n) => {
     svg.selectAll('rect.bar')
         .data(row_data, d => d.name)
         .enter()
@@ -11,7 +11,7 @@ let createBar1 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors) => 
         .style('fill', d => colors[d.name]);
 }
 
-let createBar2 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors) => {
+let createBar2 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n) => {
     svg.selectAll('rect.bar2')
         .data(row_data, d => d.name)
         .enter()
@@ -24,7 +24,7 @@ let createBar2 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors) => 
         .style('fill', d => colors[d.name]);
 }
 
-let createLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, colors) => {
+let createLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n) => {
     svg.selectAll('text.label')
         .data(row_data, d => d.name)
         .enter()
@@ -36,7 +36,7 @@ let createLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, colors) =>
         .html(d => d.name);
 }
 
-let createValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, colors) => {
+let createValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n) => {
     svg.selectAll('text.valueLabel')
         .data(row_data, d => d.name)
         .enter()
@@ -47,7 +47,7 @@ let createValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, color
         .text(d => d3.format(',.0f')(d.lastValue) + " mil ton");
 }
 
-let createValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, colors) => {
+let createValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n) => {
     svg.selectAll('text.valueLabelArea')
         .data(row_data, d => d.name)
         .enter()
@@ -59,7 +59,7 @@ let createValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, c
         .text(d => d3.format(',.0f')(d.lastValue) + " mil ha");
 }
 
-let createBandeira = (svg, row_data, x, y, barPadding, inbetweenPadding, colors) => {
+let createBandeira = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n) => {
     svg.selectAll('image.bandeira')
         .data(row_data, d => d.name)
         .enter()

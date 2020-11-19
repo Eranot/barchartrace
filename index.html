@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="css/favicon.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,400;1,900&display=swap" rel="stylesheet">
   <script>
       (function (i, s, o, g, r, a, m) {
           i['GoogleAnalyticsObject'] = r;
@@ -125,7 +127,7 @@
             <button type="button" class="btn btn-xs btn-outline-primary" v-on:click="checkForm">Restart</button>
           </div>
           <h5 class="card-title" id="graph-title">((title))</h5>
-          <div id="chartDiv" style="width:100%; height: 650px"></div>
+          <div id="chartDiv" style="width:950px; height: 950px"></div>
           <p style="position:absolute;top:50%;left:50%;font-size:1.125rem;transform: translate(-50%,-50%)" v-if="interval == null">Please upload data first</p>
         </div>
       </div>
@@ -277,7 +279,7 @@
                             results.data = reshapeData(results.data)
                         }
                         self.csv_data = results.data;
-                        self.top_n = Math.min(20, (Object.keys(self.csv_data[0]).length - 1) / 3)
+                        self.top_n = Math.min(7, (Object.keys(self.csv_data[0]).length - 1) / 3)
                     }
                 });
 

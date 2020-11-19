@@ -1,3 +1,5 @@
+var minXAxis = 42000;
+
 function createBarChartRace(data, top_n, tickDuration) {
     var data = data;
     let chartDiv = document.getElementById("chartDiv");
@@ -14,10 +16,10 @@ function createBarChartRace(data, top_n, tickDuration) {
         .attr("height", 50);
 
     const margin = {
-        top: 20,
+        top: 140,
         right: 80,
-        bottom: 0,
-        left: 30
+        bottom: 100,
+        left: 110
     };
 
     const marginTimeAxis = 30;
@@ -55,6 +57,17 @@ function createBarChartRace(data, top_n, tickDuration) {
         colors[name] = color_scale(i)
     });
 
+    colors['MT'] = '#545fffCC';
+    colors['PR'] = '#5aa348CC';
+    colors['GO'] = '#e3e84fCC';
+    colors['MS'] = '#91bfffCC';
+    colors['MG'] = '#ff7161CC';
+    colors['RS'] = '#4e913dCC';
+    colors['SP'] = '#383838CC';
+    colors['SC'] = '#fa4d39CC';
+
+    console.log(colors)
+
     // Parse data
     data.forEach((d) => {
         // first column : YYYY-MM-DD
@@ -81,9 +94,9 @@ function createBarChartRace(data, top_n, tickDuration) {
         .scale(t);
 
     let x = d3.scaleLinear()
-        .domain([0, d3.max(row_data, d => d.value)])
-        .range([margin.left, width - margin.right - 80]);
-
+        .domain([0, minXAxis])//d3.max(row_data, d => d.value)])
+        .range([margin.left, width - margin.right]);
+    
     let y = d3.scaleLinear()
         .domain([top_n, 0])
         .range([height - margin.bottom, margin.top]);
@@ -94,19 +107,19 @@ function createBarChartRace(data, top_n, tickDuration) {
         .tickSize(-(height - margin.top - margin.bottom))
         .tickFormat(d => d3.format(',')(d));
 
-    svg.append('g')
-        .attr('class', 'axis xAxis')
-        .attr('transform', `translate(0, ${margin.top})`)
-        .call(xAxis)
-        .selectAll('.tick line')
-        .classed('origin', d => d === 0);
+    // svg.append('g')
+    //     .attr('class', 'axis xAxis')
+    //     .attr('transform', `translate(0, ${margin.top})`)
+    //     .call(xAxis)
+    //     .selectAll('.tick line')
+    //     .classed('origin', d => d === 0);
 
     createBar1(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
     createBar2(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
-    createLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
+    // createLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
     createValueLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
     createValueLabelArea(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
-    // createBandeira(svg, row_data, x, y, barPadding, inbetweenPadding, colors);
+    createBandeira(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
 
 
     timeline_svg.append('g')
@@ -120,19 +133,22 @@ function createBarChartRace(data, top_n, tickDuration) {
         .attr('height', 2)
         .attr('width', 0);
 
-    let lastDigits = parseInt(d3.timeFormat("%y")(time)) + 1;
+    const zeroPad = (num, places) => String(num).padStart(places, '0')
+    let nextYear = parseInt(d3.timeFormat("%Y")(time)) + 1;
+    let lastDigits = zeroPad(nextYear, 4);
 
     let timeText = svg.append('text')
         .attr('class', 'timeText')
-        .attr('x', width - margin.right)
-        .attr('y', height - margin.bottom - 5)
+        .attr('x', width - 160)
+        .attr('y', height - 300)
         .style('text-anchor', 'end')
+        .style('font-size', '40pt')
         .html(d3.timeFormat("%Y/")(time) + lastDigits);
 
     // draw the updated graph with transitions
     function drawGraph() {
         // update xAxis with new domain
-        x.domain([0, d3.max(row_data, d => d.value)]);
+        x.domain([0, minXAxis])//d3.max(row_data, d => d.value)]);
         svg.select('.xAxis')
             .transition()
             .duration(tickDuration)
@@ -141,10 +157,10 @@ function createBarChartRace(data, top_n, tickDuration) {
 
         updateBar1(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
         updateBar2(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
-        updateLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
+        // updateLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
         updateValueLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
         updateValueLabelArea(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
-        // updateBandeira(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration);
+        updateBandeira(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
 
         // update time label and progress bar
         d3.select('.progressBar')
@@ -157,7 +173,9 @@ function createBarChartRace(data, top_n, tickDuration) {
         // timeText.html(d3.timeFormat("%B %d, %Y")(time))
         // })
 
-        let lastDigits = parseInt(d3.timeFormat("%y")(time)) + 1;
+        let nextYear = parseInt(d3.timeFormat("%Y")(time)) + 1;
+        let lastDigits = zeroPad(nextYear, 4);
+
         timeText.html(d3.timeFormat("%Y/")(time) + lastDigits)
 
     }

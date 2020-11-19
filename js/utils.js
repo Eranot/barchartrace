@@ -19,7 +19,7 @@ let getEstadoLabelY = (d, x, y, barPadding, inbetweenPadding) => {
 } 
 
 let getEstadoLabelX = (d, x, y, barPadding, inbetweenPadding) => {
-    return 24;
+    return 44;
 } 
 
 let getValueLabelY = (d, x, y, barPadding, inbetweenPadding) => {
@@ -27,5 +27,5 @@ let getValueLabelY = (d, x, y, barPadding, inbetweenPadding) => {
 }
 
 let getValueLabelAreaY = (d, x, y, barPadding, inbetweenPadding) => {
-    return (y(d.rank) + ((y(1) - y(0)) / 2) + 1) + (getBar1Height(x, y, barPadding, inbetweenPadding) / 2);
+    return (y(d.rank) + ((y(1) - y(0)) / 2) + 1) + (getBar1Height(x, y, barPadding, inbetweenPadding) / 2) - 4;
 }

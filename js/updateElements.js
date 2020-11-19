@@ -71,6 +71,7 @@ let updateLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, ti
         .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding))
         .attr('y', d => y(top_n + 1) + ((y(1) - y(0)) / 2))
         .style('text-anchor', 'end')
+        .style('font-size', '16pt')
         .html(d => d.name)
         .transition()
         .duration(tickDuration)
@@ -103,6 +104,7 @@ let updateValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, color
         .attr('class', 'valueLabel')
         .attr('x', d => x(d.value) + 5)
         .attr('y', d => y(top_n + 1))
+        .style('font-size', '18px')
         .text(d => d3.format(',.0f')(d.lastValue) + " mil ton")
         .transition()
         .duration(tickDuration)
@@ -177,26 +179,26 @@ let updateBandeira = (svg, row_data, x, y, barPadding, inbetweenPadding, colors,
 
     bandeiras.enter().append('image')
         .attr('class', 'bandeira')
-        .attr('x', d => x(d.value) - 8)
-        .attr('y', d => y(top_n + 1) + ((y(1) - y(0)) / 2))
-        .attr('xlink:href', 'http://www.educadores.diaadia.pr.gov.br/modules/galeria/uploads/11/thumb_1409852741bandeiraceara.png')
-        .attr('width', '40')
-        .attr('height', '40')
+        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding) - 10)
+        .attr('y', d => y(top_n + 1) + ((y(1) - y(0)) / 2) - 35)
+        .attr('xlink:href', d => getUrlBandeira(d.name))
+        .attr('width', '60')
+        .attr('height', '60')
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
-        .attr('y', d => getValueLabelY(d, x, y, barPadding, inbetweenPadding));
+        .attr('y', d => getEstadoLabelY(d, x, y, barPadding, inbetweenPadding));
 
     bandeiras.transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
-        .attr('x', d => x(d.value) - 8)
-        .attr('y', d => getValueLabelY(d, x, y, barPadding, inbetweenPadding));
+        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding) - 10)
+        .attr('y', d => getEstadoLabelY(d, x, y, barPadding, inbetweenPadding) - 35);
 
     bandeiras.exit()
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
-        .attr('x', d => x(d.value) - 8)
+        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding) - 10)
         .attr('y', d => y(top_n + 1)).remove();
 }

@@ -33,6 +33,7 @@ let createLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, to
         .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding))
         .attr('y', d => getEstadoLabelY(d, x, y, barPadding, inbetweenPadding))
         .style('text-anchor', 'end')
+        .style('font-size', '16pt')
         .html(d => d.name);
 }
 
@@ -55,8 +56,11 @@ let createValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, c
         .attr('class', 'valueLabelArea')
         .attr('x', d => x(d.value_1) + 5)
         .attr('y', d => getValueLabelAreaY(d, x, y, barPadding, inbetweenPadding))
-        .style('font-size', '14px')
         .text(d => d3.format(',.0f')(d.lastValue) + " mil ha");
+}
+
+let getUrlBandeira = (name) => {
+    return "img/ufs/" + name + ".png";
 }
 
 let createBandeira = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n) => {
@@ -65,9 +69,9 @@ let createBandeira = (svg, row_data, x, y, barPadding, inbetweenPadding, colors,
         .enter()
         .append('image')
         .attr('class', 'bandeira')
-        .attr('xlink:href', 'http://www.educadores.diaadia.pr.gov.br/modules/galeria/uploads/11/thumb_1409852741bandeiraceara.png')
-        .attr('width', '40')
-        .attr('height', '40')
-        .attr('x', d => x(d.value) - 8)
-        .attr('y', d => getValueLabelY(d, x, y, barPadding, inbetweenPadding)); //
+        .attr('xlink:href', d => getUrlBandeira(d.name))
+        .attr('width', '60')
+        .attr('height', '60')
+        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding) - 10)
+        .attr('y', d => getEstadoLabelY(d, x, y, barPadding, inbetweenPadding) - 30); //
 }

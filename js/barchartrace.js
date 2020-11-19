@@ -118,6 +118,31 @@ function createBarChartRace(data, top_n, tickDuration) {
         .style('text-anchor', 'end')
         .html(d3.timeFormat("%Y/")(time) + lastDigits);
 
+    // TOTAL
+
+    let getTotal = () => {
+        let sum = 0;
+        
+        let index = time.getFullYear() - 1976;
+
+        for (let sigla in data[index]) {
+            if(sigla.includes('_1') || sigla.includes('_2') || sigla.includes('Date')) {
+                continue;
+            }
+
+            sum += data[index][sigla];
+        }
+
+        return sum;
+    }
+
+    let totalText = svg.append('text')
+        .attr('class', 'totalText')
+        .attr('x', width - 295)
+        .attr('y', height - 280)
+        .style('text-anchor', 'middle')
+        .html("TOTAL: " + getTotal());
+
     // draw the updated graph with transitions
     function drawGraph() {
         // update xAxis with new domain
@@ -150,8 +175,8 @@ function createBarChartRace(data, top_n, tickDuration) {
         let nextYear = parseInt(d3.timeFormat("%Y")(time)) + 1;
         let lastDigits = zeroPad(nextYear, 4);
 
-        timeText.html(d3.timeFormat("%Y/")(time) + lastDigits)
-
+        timeText.html(d3.timeFormat("%Y/")(time) + lastDigits);
+        totalText.html("TOTAL: " + d3.format('.0f')(getTotal()));
     }
 
     // loop

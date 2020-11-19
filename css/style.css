@@ -75,8 +75,16 @@ text.timeText {
     fill: #808285;
 }
 
+text.totalText {
+    font-family: 'Lato', sans-serif;
+    font-size: 32pt;
+    font-weight: 400;
+    font-style: italic;
+    fill: #939598;
+}
+
 image.graoMilho {
-    
+
 }
 
 .xAxis > .tick line {

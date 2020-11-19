@@ -102,7 +102,7 @@ let updateValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, color
         .enter()
         .append('text')
         .attr('class', 'valueLabel')
-        .attr('x', d => x(d.value) + 12)
+        .attr('x', d => x(d.value) + 23)
         .attr('y', d => y(top_n + 1))
         .text(d => d3.format('.0f')(d.lastValue))
         .transition()
@@ -114,7 +114,7 @@ let updateValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, color
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
-        .attr('x', d => x(d.value) + 12)
+        .attr('x', d => x(d.value) + 23)
         .attr('y', d => getValueLabelY(d, x, y, barPadding, inbetweenPadding))
         .tween("text", function (d) {
             let i = d3.interpolateNumber(d.lastValue, d.value);
@@ -128,7 +128,7 @@ let updateValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, color
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
-        .attr('x', d => x(d.value) + 12)
+        .attr('x', d => x(d.value) + 23)
         .attr('y', d => y(top_n + 1)).remove()
 }
 
@@ -169,6 +169,36 @@ let updateValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, c
         .ease(d3.easeLinear)
         .attr('x', d => x(d.value_1) + 9)
         .attr('y', d => y(top_n + 1)).remove()
+}
+
+let updateGraoMilho = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n) => {
+    // update bandeiras
+    let graos = svg.selectAll('.graoMilho').data(row_data, d => d.name);
+
+    graos.enter().append('image')
+        .attr('class', 'graoMilho')
+        .attr('x', d => x(d.value) - 53)
+        .attr('y', d => y(top_n + 1) + ((y(1) - y(0)) / 2) - 35)
+        .attr('xlink:href', 'img/grao.png')
+        .attr('width', '90')
+        .attr('height', '90')
+        .transition()
+        .duration(tickDuration)
+        .ease(d3.easeLinear)
+        .attr('y', d => getValueLabelY(d, x, y, barPadding, inbetweenPadding) - 48);
+
+    graos.transition()
+        .duration(tickDuration)
+        .ease(d3.easeLinear)
+        .attr('x', d => x(d.value) - 53)
+        .attr('y', d => getValueLabelY(d, x, y, barPadding, inbetweenPadding) - 48); //
+
+    graos.exit()
+        .transition()
+        .duration(tickDuration)
+        .ease(d3.easeLinear)
+        .attr('x', d => x(d.value) - 53)
+        .attr('y', d => y(top_n + 1)).remove();
 }
 
 let updateBandeira = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n) => {

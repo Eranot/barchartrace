@@ -1,4 +1,4 @@
-var minXAxis = 36000;
+var minXAxis = 37000;
 
 function createBarChartRace(data, top_n, tickDuration) {
     var data = data;
@@ -105,6 +105,7 @@ function createBarChartRace(data, top_n, tickDuration) {
     createValueLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
     createValueLabelArea(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
     createBandeira(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
+    createGraoMilho(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
 
     const zeroPad = (num, places) => String(num).padStart(places, '0')
     let nextYear = parseInt(d3.timeFormat("%Y")(time)) + 1;
@@ -133,6 +134,7 @@ function createBarChartRace(data, top_n, tickDuration) {
         updateValueLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
         updateValueLabelArea(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
         updateBandeira(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
+        updateGraoMilho(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
 
         // update time label and progress bar
         d3.select('.progressBar')

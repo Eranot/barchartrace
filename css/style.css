@@ -75,6 +75,10 @@ text.timeText {
     fill: #808285;
 }
 
+image.graoMilho {
+    
+}
+
 .xAxis > .tick line {
     shape-rendering: CrispEdges;
     stroke: #cecece;

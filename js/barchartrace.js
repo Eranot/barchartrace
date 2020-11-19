@@ -1,4 +1,4 @@
-var minXAxis = 37000;
+var minXAxis = 36000;
 
 function createBarChartRace(data, top_n, tickDuration) {
     var data = data;
@@ -112,10 +112,9 @@ function createBarChartRace(data, top_n, tickDuration) {
 
     let timeText = svg.append('text')
         .attr('class', 'timeText')
-        .attr('x', width - 160)
-        .attr('y', height - 300)
+        .attr('x', width - 140)
+        .attr('y', height - 350)
         .style('text-anchor', 'end')
-        .style('font-size', '40pt')
         .html(d3.timeFormat("%Y/")(time) + lastDigits);
 
     // draw the updated graph with transitions

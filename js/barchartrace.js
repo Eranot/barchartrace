@@ -1,4 +1,4 @@
-var minXAxis = 42000;
+var minXAxis = 37000;
 
 function createBarChartRace(data, top_n, tickDuration) {
     var data = data;

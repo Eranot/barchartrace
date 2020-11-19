@@ -102,10 +102,9 @@ let updateValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, color
         .enter()
         .append('text')
         .attr('class', 'valueLabel')
-        .attr('x', d => x(d.value) + 5)
+        .attr('x', d => x(d.value) + 12)
         .attr('y', d => y(top_n + 1))
-        .style('font-size', '18px')
-        .text(d => d3.format(',.0f')(d.lastValue) + " mil ton")
+        .text(d => d3.format('.0f')(d.lastValue))
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
@@ -115,12 +114,12 @@ let updateValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, color
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
-        .attr('x', d => x(d.value) + 5)
+        .attr('x', d => x(d.value) + 12)
         .attr('y', d => getValueLabelY(d, x, y, barPadding, inbetweenPadding))
         .tween("text", function (d) {
             let i = d3.interpolateNumber(d.lastValue, d.value);
             return function (t) {
-                this.textContent = d3.format(',.0f')(i(t)) + " mil ton";
+                this.textContent = d3.format('.0f')(i(t));
             };
         });
 
@@ -129,7 +128,7 @@ let updateValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, color
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
-        .attr('x', d => x(d.value) + 5)
+        .attr('x', d => x(d.value) + 12)
         .attr('y', d => y(top_n + 1)).remove()
 }
 
@@ -142,10 +141,9 @@ let updateValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, c
         .enter()
         .append('text')
         .attr('class', 'valueLabelArea')
-        .attr('x', d => x(d.value_1) + 5)
+        .attr('x', d => x(d.value_1) + 9)
         .attr('y', d => y(top_n + 1))
-        .text(d => d3.format(',.0f')(d.lastValue) + " mil ha")
-        .style('font-size', '14px')
+        .text(d => d3.format('.0f')(d.lastValue))
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
@@ -155,12 +153,12 @@ let updateValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, c
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
-        .attr('x', d => x(d.value_1) + 5)
+        .attr('x', d => x(d.value_1) + 9)
         .attr('y', d => getValueLabelAreaY(d, x, y, barPadding, inbetweenPadding))
         .tween("text", function (d) {
             let i = d3.interpolateNumber(d.lastValue, d.value_1);
             return function (t) {
-                this.textContent = d3.format(',.0f')(i(t)) + " mil ha";
+                this.textContent = d3.format('.0f')(i(t));
             };
         });
 
@@ -169,7 +167,7 @@ let updateValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, c
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
-        .attr('x', d => x(d.value_1) + 5)
+        .attr('x', d => x(d.value_1) + 9)
         .attr('y', d => y(top_n + 1)).remove()
 }
 

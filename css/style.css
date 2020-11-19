@@ -50,16 +50,20 @@ text {
 }
 
 text.valueLabel {
+    font-family: 'Lato', sans-serif;
     font-weight: 700;
-    font-size: 18px;
-    fill: #505050;
+    font-size: 25px;
+    font-style: italic;
+    fill: #004538;
     dominant-baseline: middle;
 }
 
 text.valueLabelArea {
-    font-weight: 700;
-    font-size: 14px;
-    fill: #505050;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    font-style: italic;
+    fill: #75b944;
     dominant-baseline: middle;
 }
 

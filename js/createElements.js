@@ -43,9 +43,9 @@ let createValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, color
         .enter()
         .append('text')
         .attr('class', 'valueLabel')
-        .attr('x', d => x(d.value) + 5)
+        .attr('x', d => x(d.value) + 12)
         .attr('y', d => getValueLabelY(d, x, y, barPadding, inbetweenPadding))
-        .text(d => d3.format(',.0f')(d.lastValue) + " mil ton");
+        .text(d => d3.format('.0f')(d.lastValue));
 }
 
 let createValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n) => {
@@ -54,9 +54,9 @@ let createValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, c
         .enter()
         .append('text')
         .attr('class', 'valueLabelArea')
-        .attr('x', d => x(d.value_1) + 5)
+        .attr('x', d => x(d.value_1) + 9)
         .attr('y', d => getValueLabelAreaY(d, x, y, barPadding, inbetweenPadding))
-        .text(d => d3.format(',.0f')(d.lastValue) + " mil ha");
+        .text(d => d3.format('.0f')(d.lastValue));
 }
 
 let getUrlBandeira = (name) => {

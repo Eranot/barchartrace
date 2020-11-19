@@ -5,20 +5,16 @@ function createBarChartRace(data, top_n, tickDuration) {
     let chartDiv = document.getElementById("chartDiv");
     chartDiv.textContent = '';
     let width = chartDiv.clientWidth;
-    let height = chartDiv.clientHeight - 50;
+    let height = chartDiv.clientHeight;
 
     let svg = d3.select(chartDiv).append("svg")
         .attr("width", width)
         .attr("height", height);
 
-    let timeline_svg = d3.select(chartDiv).append("svg")
-        .attr("width", width)
-        .attr("height", 50);
-
     const margin = {
         top: 140,
         right: 80,
-        bottom: 100,
+        bottom: 140,
         left: 110
     };
 
@@ -56,17 +52,6 @@ function createBarChartRace(data, top_n, tickDuration) {
     column_names.forEach((name, i) => {
         colors[name] = color_scale(i)
     });
-
-    colors['MT'] = '#545fffCC';
-    colors['PR'] = '#5aa348CC';
-    colors['GO'] = '#e3e84fCC';
-    colors['MS'] = '#91bfffCC';
-    colors['MG'] = '#ff7161CC';
-    colors['RS'] = '#4e913dCC';
-    colors['SP'] = '#383838CC';
-    colors['SC'] = '#fa4d39CC';
-
-    console.log(colors)
 
     // Parse data
     data.forEach((d) => {
@@ -120,18 +105,6 @@ function createBarChartRace(data, top_n, tickDuration) {
     createValueLabel(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
     createValueLabelArea(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
     createBandeira(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
-
-
-    timeline_svg.append('g')
-        .attr('class', 'axis tAxis')
-        .attr('transform', `translate(0, 20)`)
-        .call(timeAxis);
-
-    timeline_svg.append('rect')
-        .attr('class', 'progressBar')
-        .attr('transform', `translate(${marginTimeAxis}, 20)`)
-        .attr('height', 2)
-        .attr('width', 0);
 
     const zeroPad = (num, places) => String(num).padStart(places, '0')
     let nextYear = parseInt(d3.timeFormat("%Y")(time)) + 1;

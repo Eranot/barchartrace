@@ -9,7 +9,7 @@ let updateBar1 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, tic
         //enter from out of screen
         .attr('y', d => y(top_n + 1) + 0)
         .attr('height', getBar1Height(x, y, barPadding, inbetweenPadding))
-        .style('fill', d => colors[d.name])
+        .style('fill', '#fdba35')
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
@@ -41,7 +41,7 @@ let updateBar2 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, tic
         //enter from out of screen
         .attr('y', d => y(top_n) + ((y(1) - y(0)) / 2 - barPadding) + barPadding / 2)
         .attr('height', getBar2Height(x, y, barPadding, inbetweenPadding))
-        .style('fill', d => colors[d.name])
+        .style('fill', '#74b943')
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)

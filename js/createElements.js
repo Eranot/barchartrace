@@ -8,7 +8,7 @@ let createBar1 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top
         .attr('width', d => x(d.value) - x(0))
         .attr('y', d => getBar1Y(d, x, y, barPadding, inbetweenPadding))
         .attr('height', getBar1Height(x, y, barPadding, inbetweenPadding))
-        .style('fill', d => colors[d.name]);
+        .style('fill', '#fdba35');
 }
 
 let createBar2 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n) => {
@@ -21,7 +21,7 @@ let createBar2 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top
         .attr('width', d => x(d.value_1) - x(0))
         .attr('y', d => getBar2Y(d, x, y, barPadding, inbetweenPadding))
         .attr('height', getBar2Height(x, y, barPadding, inbetweenPadding))
-        .style('fill', d => colors[d.name]);
+        .style('fill', '#74b943');
 }
 
 let createLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n) => {

@@ -162,4 +162,14 @@ text.label {
 #chartDiv {
     background-image: url(../img/background.png);
     background-size: 950px 950px;
+    position: absolute;
+    outline: 34px solid black;
+    margin-bottom: 30px;
+}
+
+#chartDivForeground {
+    background-image: url(../img/foreground.png);
+    background-size: 950px 950px;
+    position: absolute;
+    margin-bottom: 30px;
 }

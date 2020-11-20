@@ -26,7 +26,7 @@ let updateBar1 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, tic
         .duration(tickDuration)
         .ease(d3.easeLinear)
         .attr('width', d => x(d.value) - x(0))
-        .attr('y', d => y(top_n + 1) + barPadding / 2)
+        .attr('y', d => getBar1Y({rank: top_n + 1}, x, y, barPadding, inbetweenPadding))
         .remove();
 }
 
@@ -58,7 +58,7 @@ let updateBar2 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, tic
         .duration(tickDuration)
         .ease(d3.easeLinear)
         .attr('width', d => x(d.value_1) - x(0))
-        .attr('y', d => y(top_n + 1) + barPadding / 2)
+        .attr('y', d => getBar2Y({rank: top_n + 1}, x, y, barPadding, inbetweenPadding))
         .remove();
 }
 
@@ -129,7 +129,8 @@ let updateValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, color
         .duration(tickDuration)
         .ease(d3.easeLinear)
         .attr('x', d => x(d.value) + 23)
-        .attr('y', d => y(top_n + 1)).remove()
+        .attr('y', d => getValueLabelY({rank: top_n + 1}, x, y, barPadding, inbetweenPadding))
+        .remove()
 }
 
 let updateValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n) => {
@@ -168,7 +169,8 @@ let updateValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, c
         .duration(tickDuration)
         .ease(d3.easeLinear)
         .attr('x', d => x(d.value_1) + 9)
-        .attr('y', d => y(top_n + 1)).remove()
+        .attr('y', d => getValueLabelAreaY({rank: top_n + 1}, x, y, barPadding, inbetweenPadding))
+        .remove()
 }
 
 let updateGraoMilho = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n) => {
@@ -198,7 +200,8 @@ let updateGraoMilho = (svg, row_data, x, y, barPadding, inbetweenPadding, colors
         .duration(tickDuration)
         .ease(d3.easeLinear)
         .attr('x', d => x(d.value) - 53)
-        .attr('y', d => y(top_n + 1)).remove();
+        .attr('y', d => getValueLabelY({rank: top_n + 1}, x, y, barPadding, inbetweenPadding) - 48)
+        .remove();
 }
 
 let updateBandeira = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n) => {
@@ -207,7 +210,7 @@ let updateBandeira = (svg, row_data, x, y, barPadding, inbetweenPadding, colors,
 
     bandeiras.enter().append('image')
         .attr('class', 'bandeira')
-        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding))
+        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding) - 5)
         .attr('y', d => y(top_n + 1) + ((y(1) - y(0)) / 2) - 45)
         .attr('xlink:href', d => getUrlBandeira(d.name))
         .attr('width', '80')
@@ -215,7 +218,7 @@ let updateBandeira = (svg, row_data, x, y, barPadding, inbetweenPadding, colors,
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
-        .attr('y', d => getEstadoLabelY(d, x, y, barPadding, inbetweenPadding) - 5);
+        .attr('y', d => getEstadoLabelY(d, x, y, barPadding, inbetweenPadding) - 45);
 
     bandeiras.transition()
         .duration(tickDuration)
@@ -228,5 +231,6 @@ let updateBandeira = (svg, row_data, x, y, barPadding, inbetweenPadding, colors,
         .duration(tickDuration)
         .ease(d3.easeLinear)
         .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding) - 5)
-        .attr('y', d => y(top_n + 1)).remove();
+        .attr('y', d => getEstadoLabelY({rank: top_n + 1}, x, y, barPadding, inbetweenPadding) - 45)
+        .remove();
 }

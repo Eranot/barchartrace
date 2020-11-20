@@ -15,7 +15,7 @@ function createBarChartRace(data, top_n, tickDuration) {
         top: 140,
         right: 80,
         bottom: 140,
-        left: 110
+        left: 153
     };
 
     const marginTimeAxis = 30;

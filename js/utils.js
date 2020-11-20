@@ -14,6 +14,10 @@ let getBar2Y = (d, x, y, barPadding, inbetweenPadding) => {
     return y(d.rank) + getBar1Height(x, y, barPadding, inbetweenPadding) + inbetweenPadding + barPadding / 2;
 }
 
+let getBarsX = (x) => {
+    return x(0) + 1;
+}
+
 let getEstadoLabelY = (d, x, y, barPadding, inbetweenPadding) => {
     return (y(d.rank) + ((y(1) - y(0)) / 2) - 2);
 } 

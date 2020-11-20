@@ -4,7 +4,7 @@ let createBar1 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top
         .enter()
         .append('rect')
         .attr('class', 'bar')
-        .attr('x', x(0) + 1)
+        .attr('x', getBarsX(x))
         .attr('width', d => x(d.value) - x(0))
         .attr('y', d => getBar1Y(d, x, y, barPadding, inbetweenPadding))
         .attr('height', getBar1Height(x, y, barPadding, inbetweenPadding))
@@ -17,7 +17,7 @@ let createBar2 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top
         .enter()
         .append('rect')
         .attr('class', 'bar2')
-        .attr('x', x(0) + 1)
+        .attr('x', getBarsX(x))
         .attr('width', d => x(d.value_1) - x(0))
         .attr('y', d => getBar2Y(d, x, y, barPadding, inbetweenPadding))
         .attr('height', getBar2Height(x, y, barPadding, inbetweenPadding))
@@ -83,8 +83,8 @@ let createBandeira = (svg, row_data, x, y, barPadding, inbetweenPadding, colors,
         .append('image')
         .attr('class', 'bandeira')
         .attr('xlink:href', d => getUrlBandeira(d.name))
-        .attr('width', '60')
-        .attr('height', '60')
-        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding) - 10)
-        .attr('y', d => getEstadoLabelY(d, x, y, barPadding, inbetweenPadding) - 30); //
+        .attr('width', '80')
+        .attr('height', '80')
+        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding) - 5)
+        .attr('y', d => getEstadoLabelY(d, x, y, barPadding, inbetweenPadding) - 45); //
 }

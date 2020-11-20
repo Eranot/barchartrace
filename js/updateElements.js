@@ -4,7 +4,7 @@ let updateBar1 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, tic
 
     bars.enter().append('rect')
         .attr('class', 'bar')
-        .attr('x', x(0) + 1)
+        .attr('x', getBarsX(x))
         .attr('width', d => x(d.value) - x(0))
         //enter from out of screen
         .attr('y', d => y(top_n + 1) + 0)
@@ -36,7 +36,7 @@ let updateBar2 = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, tic
 
     bars2.enter().append('rect')
         .attr('class', 'bar2')
-        .attr('x', x(0) + 1)
+        .attr('x', getBarsX(x))
         .attr('width', d => x(d.value_1) - x(0))
         //enter from out of screen
         .attr('y', d => y(top_n) + ((y(1) - y(0)) / 2 - barPadding) + barPadding / 2)
@@ -207,26 +207,26 @@ let updateBandeira = (svg, row_data, x, y, barPadding, inbetweenPadding, colors,
 
     bandeiras.enter().append('image')
         .attr('class', 'bandeira')
-        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding) - 10)
-        .attr('y', d => y(top_n + 1) + ((y(1) - y(0)) / 2) - 35)
+        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding))
+        .attr('y', d => y(top_n + 1) + ((y(1) - y(0)) / 2) - 45)
         .attr('xlink:href', d => getUrlBandeira(d.name))
-        .attr('width', '60')
-        .attr('height', '60')
+        .attr('width', '80')
+        .attr('height', '80')
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
-        .attr('y', d => getEstadoLabelY(d, x, y, barPadding, inbetweenPadding));
+        .attr('y', d => getEstadoLabelY(d, x, y, barPadding, inbetweenPadding) - 5);
 
     bandeiras.transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
-        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding) - 10)
-        .attr('y', d => getEstadoLabelY(d, x, y, barPadding, inbetweenPadding) - 35);
+        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding) - 5)
+        .attr('y', d => getEstadoLabelY(d, x, y, barPadding, inbetweenPadding) - 45);
 
     bandeiras.exit()
         .transition()
         .duration(tickDuration)
         .ease(d3.easeLinear)
-        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding) - 10)
+        .attr('x', d => getEstadoLabelX(d, x, y, barPadding, inbetweenPadding) - 5)
         .attr('y', d => y(top_n + 1)).remove();
 }

@@ -45,7 +45,7 @@ let createValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, color
         .attr('class', 'valueLabel')
         .attr('x', d => x(d.value) + 23)
         .attr('y', d => getValueLabelY(d, x, y, barPadding, inbetweenPadding))
-        .text(d => d3.format('.0f')(d.lastValue));
+        .text(d => d3.format(',.0f')(d.lastValue).replace(",", "."));
 }
 
 let createValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n) => {
@@ -56,7 +56,7 @@ let createValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, c
         .attr('class', 'valueLabelArea')
         .attr('x', d => x(d.value_1) + 9)
         .attr('y', d => getValueLabelAreaY(d, x, y, barPadding, inbetweenPadding))
-        .text(d => d3.format('.0f')(d.lastValue));
+        .text(d => d3.format(',.0f')(d.lastValue).replace(",", "."));
 }
 
 let createGraoMilho = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n) => {

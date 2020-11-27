@@ -117,9 +117,10 @@ let updateValueLabel = (svg, row_data, x, y, barPadding, inbetweenPadding, color
         .attr('x', d => x(d.value) + 23)
         .attr('y', d => getValueLabelY(d, x, y, barPadding, inbetweenPadding))
         .tween("text", function (d) {
-            let i = d3.interpolateNumber(d.lastValue, d.value);
+            // let i = d3.interpolateNumber(d.lastValue, d.value);
+            let i = d3.interpolateNumber(d.value, d.value);
             return function (t) {
-                this.textContent = d3.format('.0f')(i(t));
+                this.textContent = d3.format(',.0f')(i(t)).replace(",", ".");
             };
         });
 
@@ -157,9 +158,10 @@ let updateValueLabelArea = (svg, row_data, x, y, barPadding, inbetweenPadding, c
         .attr('x', d => x(d.value_1) + 9)
         .attr('y', d => getValueLabelAreaY(d, x, y, barPadding, inbetweenPadding))
         .tween("text", function (d) {
-            let i = d3.interpolateNumber(d.lastValue, d.value_1);
+            // let i = d3.interpolateNumber(d.lastValue, d.value_1);
+            let i = d3.interpolateNumber(d.value_1, d.value_1);
             return function (t) {
-                this.textContent = d3.format('.0f')(i(t));
+                this.textContent = d3.format(',.0f')(i(t)).replace(",", ".");
             };
         });
 

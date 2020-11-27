@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="pt-BR">
 <head>
   <title>
     FabDev | Bar chart race generator
@@ -129,7 +129,10 @@
           </div>
           <h5 class="card-title" id="graph-title">((title))</h5>
           <div id="chartDiv" style="width:950px; height: 950px"></div>
-          <div id="chartDivForeground" style="width:950px; height: 950px"></div>
+          <div id="chartDivForeground" style="width:950px; height: 950px">
+            <div class="fonteText">Fonte: Série histórica da Conab</div>
+          </div>
+
           <p style="position:absolute;top:50%;left:50%;font-size:1.125rem;transform: translate(-50%,-50%)" v-if="interval == null">Please upload data first</p>
         </div>
       </div>
@@ -234,6 +237,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="js/createElements.js"></script>
 <script src="js/updateElements.js"></script>
+<script src="js/createElementTotais.js"></script>
+<script src="js/updateElementTotais.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/barchartrace.js"></script>
 <script>
@@ -244,7 +249,7 @@
             file: null,
             csv_data: null,
             interval: null,
-            duration: 100,
+            duration: 70,
             tickDuration: 500,
             top_n: 10,
             title: "My bar chart",

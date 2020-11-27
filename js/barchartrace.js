@@ -1,6 +1,6 @@
 var minXAxis = 37000;
 
-function createBarChartRace(data, top_n, tickDuration) {
+async function createBarChartRace(data, top_n, tickDuration) {
     var data = data;
     let chartDiv = document.getElementById("chartDiv");
     chartDiv.textContent = '';
@@ -106,6 +106,10 @@ function createBarChartRace(data, top_n, tickDuration) {
     createValueLabelArea(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
     createBandeira(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
     createGraoMilho(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n);
+    createBarProducaoTotal(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n, data, time);
+    createValueLabelProducaoTotal(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n, data, time);
+    createBarAreaTotal(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n, data, time);
+    createValueLabelAreaTotal(svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n, data, time);
 
     const zeroPad = (num, places) => String(num).padStart(places, '0')
     let nextYear = parseInt(d3.timeFormat("%Y")(time)) + 1;
@@ -113,35 +117,16 @@ function createBarChartRace(data, top_n, tickDuration) {
 
     let timeText = svg.append('text')
         .attr('class', 'timeText')
-        .attr('x', width - 140)
-        .attr('y', height - 350)
-        .style('text-anchor', 'end')
+        .attr('x', 615)
+        .attr('y', 650)
         .html(d3.timeFormat("%Y/")(time) + lastDigits);
 
-    // TOTAL
-
-    let getTotal = () => {
-        let sum = 0;
-        
-        let index = time.getFullYear() - 1976;
-
-        for (let sigla in data[index]) {
-            if(sigla.includes('_1') || sigla.includes('_2') || sigla.includes('Date')) {
-                continue;
-            }
-
-            sum += data[index][sigla];
-        }
-
-        return sum;
-    }
-
-    let totalText = svg.append('text')
-        .attr('class', 'totalText')
-        .attr('x', width - 295)
-        .attr('y', height - 280)
-        .style('text-anchor', 'middle')
-        .html("TOTAL: " + getTotal());
+    // let totalText = svg.append('text')
+    //     .attr('class', 'totalText')
+    //     .attr('x', width - 295)
+    //     .attr('y', height - 280)
+    //     .style('text-anchor', 'middle')
+    //     .html("TOTAL: " + getTotal());
 
     // draw the updated graph with transitions
     function drawGraph() {
@@ -160,6 +145,10 @@ function createBarChartRace(data, top_n, tickDuration) {
         updateValueLabelArea(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
         updateBandeira(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
         updateGraoMilho(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n);
+        updateBarProducaoTotal(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n, data, time)
+        updateValueLabelProducaoTotal(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n, data, time);
+        updateBarAreaTotal(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n, data, time)
+        updateValueLabelAreaTotal(svg, row_data, x, y, barPadding, inbetweenPadding, colors, tickDuration, top_n, data, time);
 
         // update time label and progress bar
         d3.select('.progressBar')
@@ -176,8 +165,10 @@ function createBarChartRace(data, top_n, tickDuration) {
         let lastDigits = zeroPad(nextYear, 4);
 
         timeText.html(d3.timeFormat("%Y/")(time) + lastDigits);
-        totalText.html("TOTAL: " + d3.format('.0f')(getTotal()));
     }
+
+    const delay = async t => new Promise(resolve => setTimeout(resolve, t));
+    await delay(2000);
 
     // loop
     let i = 1;

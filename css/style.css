@@ -67,12 +67,41 @@ text.valueLabelArea {
     dominant-baseline: middle;
 }
 
+text.valueLabelProducaoTotal {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    font-style: italic;
+    fill: #004538;
+    dominant-baseline: middle;
+}
+
+text.valueLabelAreaTotal {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    font-style: italic;
+    fill: #004538;
+    dominant-baseline: middle;
+}
+
 text.timeText {
     font-family: 'Lato', sans-serif;
-    font-size: 45pt;
+    font-size: 24pt;
     font-weight: 900;
     font-style: italic;
     fill: #808285;
+}
+
+.fonteText {
+    font-family: 'Lato', sans-serif;
+    font-size: 16pt;
+    font-weight: 400;
+    color: #FFFFFF;
+    position: absolute;
+    bottom: 0px;
+    left: 260px;
+    text-shadow: 2px 2px black;
 }
 
 text.totalText {

@@ -33,3 +33,68 @@ let getValueLabelY = (d, x, y, barPadding, inbetweenPadding) => {
 let getValueLabelAreaY = (d, x, y, barPadding, inbetweenPadding) => {
     return (y(d.rank) + ((y(1) - y(0)) / 2) + 1) + (getBar1Height(x, y, barPadding, inbetweenPadding) / 2) - 3;
 }
+
+let getBarProducaoTotalX = (d) => {
+    return 615;
+}
+
+let getBarProducaoTotalY = (d) => {
+    return 678;
+}
+
+let getBarProducaoTotalWidth = (d) => {
+    return 140 * d.total / 105167;
+}
+
+// TOTAL
+
+let getTotalByYear = (data, year) => {
+    let sum = 0;
+    let index = year - 1976;
+
+    for (let sigla in data[index]) {
+        if(sigla.includes('_1') || sigla.includes('_2') || sigla.includes('Date')) {
+            continue;
+        }
+
+        sum += data[index][sigla];
+    }
+
+    return sum;
+}
+
+let getTotal = (data, time) => {
+    let total = getTotalByYear(data, time.getFullYear());
+    let lastTotal = time.getFullYear() > 1976 ? getTotalByYear(data, time.getFullYear()-1) : total;
+
+    return {
+        total: total,
+        lastTotal: lastTotal
+    };
+}
+
+let getAreaTotalByYear = (data, year) => {
+    let sum = 0;
+    let index = year - 1976;
+
+    for (let sigla in data[index]) {
+        if(!sigla.includes('_1')) {
+            continue;
+        }
+
+        sum += data[index][sigla];
+    }
+
+    return sum;
+}
+
+let getAreaTotal = (data, time) => {
+
+    let total = getAreaTotalByYear(data, time.getFullYear());
+    let lastTotal = time.getFullYear() > 1976 ? getAreaTotalByYear(data, time.getFullYear()-1) : total;
+
+    return {
+        total: total,
+        lastTotal: lastTotal
+    };
+}

@@ -118,8 +118,16 @@ async function createBarChartRace(data, top_n, tickDuration) {
     let timeText = svg.append('text')
         .attr('class', 'timeText')
         .attr('x', 615)
-        .attr('y', 650)
+        .attr('y', 630)
         .html(d3.timeFormat("%Y/")(time) + lastDigits);
+
+    let iconeBrasil = svg.append('image')
+        .attr('class', 'iconeBrasil')
+        .attr('xlink:href', 'img/ufs/RS.png')
+        .attr('width', '90')
+        .attr('height', '90')
+        .attr('x', 504)
+        .attr('y', 570);
 
     // let totalText = svg.append('text')
     //     .attr('class', 'totalText')

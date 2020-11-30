@@ -18,10 +18,10 @@ let updateValueLabelProducaoTotal = (svg, row_data, x, y, barPadding, inbetweenP
         .duration(tickDuration)
         .ease(d3.easeLinear)
         .attr('x', d => getBarProducaoTotalX(d) + getBarProducaoTotalWidth(d) + 10)
-        .attr('y', d => getBarProducaoTotalY(d) + 23)
+        .attr('y', d => getBarProducaoTotalY(d) + 24)
         .tween("text", function (d) {
-            // let i = d3.interpolateNumber(d.lastTotal, d.total);
-            let i = d3.interpolateNumber(d.total, d.total);
+            let i = d3.interpolateNumber(d.lastTotal, d.total);
+            // let i = d3.interpolateNumber(d.total, d.total);
             return function (t) {
                 this.textContent = d3.format(',.0f')(i(t)).replace(",", ".");
             };
@@ -48,10 +48,10 @@ let updateValueLabelAreaTotal = (svg, row_data, x, y, barPadding, inbetweenPaddi
         .duration(tickDuration)
         .ease(d3.easeLinear)
         .attr('x', d => getBarProducaoTotalX(d) + getBarProducaoTotalWidth(d) + 10)
-        .attr('y', d => getBarProducaoTotalY(d) + 72)
+        .attr('y', d => getBarProducaoTotalY(d) + 73)
         .tween("text", function (d) {
-            // let i = d3.interpolateNumber(d.lastTotal, d.total);
-            let i = d3.interpolateNumber(d.total, d.total);
+            let i = d3.interpolateNumber(d.lastTotal, d.total);
+            // let i = d3.interpolateNumber(d.total, d.total);
             return function (t) {
                 this.textContent = d3.format(',.0f')(i(t)).replace(",", ".");
             };

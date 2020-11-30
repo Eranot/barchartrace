@@ -61,7 +61,7 @@ text.valueLabel {
 text.valueLabelArea {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    font-size: 17px;
+    font-size: 20px;
     font-style: italic;
     fill: #75b944;
     dominant-baseline: middle;
@@ -70,7 +70,7 @@ text.valueLabelArea {
 text.valueLabelProducaoTotal {
     font-family: 'Lato', sans-serif;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 19px;
     font-style: italic;
     fill: #004538;
     dominant-baseline: middle;
@@ -79,7 +79,7 @@ text.valueLabelProducaoTotal {
 text.valueLabelAreaTotal {
     font-family: 'Lato', sans-serif;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 19px;
     font-style: italic;
     fill: #004538;
     dominant-baseline: middle;

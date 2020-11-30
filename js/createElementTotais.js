@@ -18,7 +18,7 @@ let createValueLabelProducaoTotal = (svg, row_data, x, y, barPadding, inbetweenP
         .append('text')
         .attr('class', 'valueLabelProducaoTotal')
         .attr('x', d => getBarProducaoTotalX(d) + getBarProducaoTotalWidth(d) + 10)
-        .attr('y', d => getBarProducaoTotalY(d) + 23)
+        .attr('y', d => getBarProducaoTotalY(d) + 24)
         .text(d => d3.format(',.0f')(d.total).replace(",", "."));
 }
 
@@ -42,6 +42,6 @@ let createValueLabelAreaTotal = (svg, row_data, x, y, barPadding, inbetweenPaddi
         .append('text')
         .attr('class', 'valueLabelAreaTotal')
         .attr('x', d => getBarProducaoTotalX(d) + getBarProducaoTotalWidth(d) + 10)
-        .attr('y', d => getBarProducaoTotalY(d) + 72)
+        .attr('y', d => getBarProducaoTotalY(d) + 73)
         .text(d => d3.format(',.0f')(d.total).replace(",", "."));
 }

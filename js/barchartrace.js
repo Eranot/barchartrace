@@ -123,7 +123,7 @@ async function createBarChartRace(data, top_n, tickDuration) {
 
     let iconeBrasil = svg.append('image')
         .attr('class', 'iconeBrasil')
-        .attr('xlink:href', 'img/ufs/RS.png')
+        .attr('xlink:href', 'img/ufs/BR.png')
         .attr('width', '90')
         .attr('height', '90')
         .attr('x', 504)

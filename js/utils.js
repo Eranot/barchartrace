@@ -43,14 +43,14 @@ let getBarProducaoTotalY = (d) => {
 }
 
 let getBarProducaoTotalWidth = (d) => {
-    return 140 * d.total / 105167;
+    return 110 * d.total / 1353771;
 }
 
 // TOTAL
 
 let getTotalByYear = (data, year) => {
     let sum = 0;
-    let index = year - 1976;
+    let index = year - 1961;
 
     for (let sigla in data[index]) {
         if(sigla.includes('_1') || sigla.includes('_2') || sigla.includes('Date')) {
@@ -65,7 +65,15 @@ let getTotalByYear = (data, year) => {
 
 let getTotal = (data, time) => {
     let total = getTotalByYear(data, time.getFullYear());
-    let lastTotal = time.getFullYear() > 1976 ? getTotalByYear(data, time.getFullYear()-1) : total;
+    let lastTotal = time.getFullYear() > 1961 ? getTotalByYear(data, time.getFullYear()-1) : total;
+
+    if(time.getFullYear() == 2018) {
+        console.log("2018 " + total);
+    }
+    
+    if(time.getFullYear() == 2019) {
+        total = 1409444.796;
+    }
 
     return {
         total: total,
@@ -75,7 +83,7 @@ let getTotal = (data, time) => {
 
 let getAreaTotalByYear = (data, year) => {
     let sum = 0;
-    let index = year - 1976;
+    let index = year - 1961;
 
     for (let sigla in data[index]) {
         if(!sigla.includes('_1')) {
@@ -92,6 +100,14 @@ let getAreaTotal = (data, time) => {
 
     let total = getAreaTotalByYear(data, time.getFullYear());
     let lastTotal = time.getFullYear() > 1976 ? getAreaTotalByYear(data, time.getFullYear()-1) : total;
+
+    if(time.getFullYear() == 2018) {
+        console.log("area 2018 " + total);
+    }
+
+    if(time.getFullYear() == 2019) {
+        total = 238513.969;
+    }
 
     return {
         total: total,

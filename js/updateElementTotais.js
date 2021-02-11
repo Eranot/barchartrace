@@ -23,7 +23,7 @@ let updateValueLabelProducaoTotal = (svg, row_data, x, y, barPadding, inbetweenP
             let i = d3.interpolateNumber(d.lastTotal, d.total);
             // let i = d3.interpolateNumber(d.total, d.total);
             return function (t) {
-                this.textContent = d3.format(',.0f')(i(t)).replace(",", ".");
+                this.textContent = d3.format(',.0f')(i(t)).replaceAll(",", ".");
             };
         });
 }
@@ -53,7 +53,7 @@ let updateValueLabelAreaTotal = (svg, row_data, x, y, barPadding, inbetweenPaddi
             let i = d3.interpolateNumber(d.lastTotal, d.total);
             // let i = d3.interpolateNumber(d.total, d.total);
             return function (t) {
-                this.textContent = d3.format(',.0f')(i(t)).replace(",", ".");
+                this.textContent = d3.format(',.0f')(i(t)).replaceAll(",", ".");
             };
         });
 }

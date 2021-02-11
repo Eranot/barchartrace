@@ -5,25 +5,28 @@ finalData = {
 
 def getOriginal():
     original = []
-    with open('../datasets/sempre_estados_clean.csv', newline='') as f:
+    with open('../datasets/sempre_paises_clean.csv', newline='') as f:
         spamreader = csv.reader(f, delimiter=',', quotechar='"')
         for row in spamreader:
             original.append(row)
     return original
 
-def buildFinalData(row):
-    label = row[0]
-    year = 1976
-    for i in range(1, len(row), 3):
+def buildFinalData(rowIndex, row):
+    label = row[0].split('[')[0][0:-1]
+    year = 1961
+    for i in range(1, len(row)):
         if(year not in finalData):
             finalData[year] = {}
         
         if(label not in finalData[year]):
             finalData[year][label] = {}
 
-        finalData[year][label]['area'] = toFloatOrZero(row[i].replace('.', '').replace(',', '.'))
-        finalData[year][label]['produtividade'] = toFloatOrZero(row[i+1].replace('.', '').replace(',', '.'))
-        finalData[year][label]['producao'] = toFloatOrZero(row[i+2].replace('.', '').replace(',', '.'))
+        if(rowIndex % 3 == 0):
+            finalData[year][label]['area'] = toFloatOrZero(row[i].replace('.', '').replace(',', '.')) / 1000.0
+        elif(rowIndex % 3 == 1):
+            finalData[year][label]['producao'] = toFloatOrZero(row[i].replace('.', '').replace(',', '.')) / 1000.0
+        elif(rowIndex % 3 == 2):
+            finalData[year][label]['produtividade'] = toFloatOrZero(row[i].replace('.', '').replace(',', '.'))
 
         year += 1
 
@@ -57,8 +60,8 @@ def exportFinalCsv(finalData):
 
 if __name__ == "__main__":
     original = getOriginal()[1:]
-    for row in original:
-        buildFinalData(row)
+    for rowIndex, row in enumerate(original):
+        buildFinalData(rowIndex, row)
 
     # print(finalData)
 

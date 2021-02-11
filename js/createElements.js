@@ -73,7 +73,7 @@ let createGraoMilho = (svg, row_data, x, y, barPadding, inbetweenPadding, colors
 }
 
 let getUrlBandeira = (name) => {
-    return "img/paises/" + name.toLowerCase().replace(' ', '-') + ".png";
+    return "img/paises/" + name.toLowerCase().replaceAll(' ', '-') + ".png";
 }
 
 let createBandeira = (svg, row_data, x, y, barPadding, inbetweenPadding, colors, top_n) => {

@@ -1,4 +1,4 @@
-var minXAxis = 37000;
+var minXAxis = 450000;
 
 async function createBarChartRace(data, top_n, tickDuration) {
     var data = data;
@@ -113,17 +113,16 @@ async function createBarChartRace(data, top_n, tickDuration) {
 
     const zeroPad = (num, places) => String(num).padStart(places, '0')
     let nextYear = parseInt(d3.timeFormat("%Y")(time)) + 1;
-    let lastDigits = zeroPad(nextYear, 4);
 
     let timeText = svg.append('text')
         .attr('class', 'timeText')
         .attr('x', 615)
         .attr('y', 630)
-        .html(d3.timeFormat("%Y/")(time) + lastDigits);
+        .html(d3.timeFormat("%Y")(time));
 
-    let iconeBrasil = svg.append('image')
+    let iconeMundo = svg.append('image')
         .attr('class', 'iconeBrasil')
-        .attr('xlink:href', 'img/ufs/BR.png')
+        .attr('xlink:href', 'img/paises/world3.png')
         .attr('width', '90')
         .attr('height', '90')
         .attr('x', 504)
@@ -170,9 +169,8 @@ async function createBarChartRace(data, top_n, tickDuration) {
         // })
 
         let nextYear = parseInt(d3.timeFormat("%Y")(time)) + 1;
-        let lastDigits = zeroPad(nextYear, 4);
 
-        timeText.html(d3.timeFormat("%Y/")(time) + lastDigits);
+        timeText.html(d3.timeFormat("%Y")(time));
     }
 
     const delay = async t => new Promise(resolve => setTimeout(resolve, t));
